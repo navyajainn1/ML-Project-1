@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jaipur Crime Data Entry</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #d9e4ec);
+      margin: 0;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1f3c88;
+      letter-spacing: 1px;
+    }
+
+    form {
+      max-width: 650px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px 35px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      border-top: 6px solid #1f3c88;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #1f3c88;
+      box-shadow: 0 0 6px rgba(31, 60, 136, 0.3);
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #1f3c88, #3a5adf);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3a5adf, #1f3c88);
+      box-shadow: 0 6px 15px rgba(31, 60, 136, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+      .row, .row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Jaipur Crime Data Entry Form</h2>
+
+  <form action="/submit-crime" method="post">
+
+    <label>Case ID</label>
+    <input type="text" name="case_id" placeholder="JPR-2026-XXXX" required>
+
+    <div class="row">
+      <div>
+        <label>Crime Year</label>
+        <input type="number" name="crime_year" min="2000" max="2026" required>
+      </div>
+
+      <div>
+        <label>Crime Month</label>
+        <input type="number" name="crime_month" min="1" max="12" required>
+      </div>
+
+      <div>
+        <label>Crime Day</label>
+        <input type="number" name="crime_day" min="1" max="31" required>
+      </div>
+    </div>
+
+    <label>Time Slot</label>
+    <select name="crime_time_slot" required>
+      <option value="">-- Select Time Slot --</option>
+      <option>Morning</option>
+      <option>Afternoon</option>
+      <option>Evening</option>
+      <option>Night</option>
+    </select>
+
+    <div class="row-2">
+      <div>
+        <label>Zone</label>
+        <select name="zone" required>
+          <option value="">-- Select Zone --</option>
+          <option>North</option>
+          <option>South</option>
+          <option>East</option>
+          <option>West</option>
+          <option>Central</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Police Station</label>
+        <input type="text" name="police_station" required>
+      </div>
+    </div>
+
+    <label>Area Type</label>
+    <select name="area_type" required>
+      <option>Urban</option>
+      <option>Residential</option>
+      <option>Commercial</option>
+      <option>Slum</option>
+    </select>
+
+    <label>Population Density (per sq km)</label>
+    <input type="number" name="population_density" required>
+
+    <div class="row-2">
+      <div>
+        <label>Festival Season</label>
+        <select name="festival_season" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Prior Criminal Record</label>
+        <select name="prior_criminal_record" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div>
+        <label>Victim Age</label>
+        <input type="number" name="victim_age" min="0" max="100" required>
+      </div>
+
+      <div>
+        <label>Victim Gender</label>
+        <select name="victim_gender" required>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Crime Type</label>
+    <select name="crime_type" required>
+      <option>Theft</option>
+      <option>Burglary</option>
+      <option>Assault</option>
+      <option>Cyber Crime</option>
+      <option>Murder</option>
+      <option>Other</option>
+    </select>
+
+    <button type="submit">Submit Crime Record</button>
+
+    <div class="footer-note">
+      Jaipur City Crime Analytics System • Data used for research & safety planning
+    </div>
+
+  </form>
+
+</body>
+</html>
